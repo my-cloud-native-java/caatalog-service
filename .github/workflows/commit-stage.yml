@@ -1,5 +1,5 @@
 name: Commit Stage
-on: Push
+on: push
 
 jobs:
   build:
