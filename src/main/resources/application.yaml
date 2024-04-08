@@ -1,0 +1,11 @@
+server:
+  port: 9001
+  tomcat:
+    # How long to wait before receiving data from client after establishing a TCP connection
+    connection-timeout: 2s 
+    # How long to wait before new HTTP request comes from the client.
+    keep-alive-timeout: 15s
+    # This a local configuration. In a production scenario this will be externalized.
+    threads:
+      max: 50
+      min-spare: 5
