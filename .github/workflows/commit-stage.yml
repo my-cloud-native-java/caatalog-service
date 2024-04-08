@@ -1,7 +1,6 @@
 name: Commit Stage
 on: Push
 
-
 jobs:
   build:
     name: Build and Test
