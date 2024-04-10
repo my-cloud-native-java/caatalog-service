@@ -2,6 +2,8 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.4'
 	id 'io.spring.dependency-management' version '1.1.4'
+    id 'io.reflectoring.spring-boot-devtools' version '0.0.3'
+    id 'com.adarshr.test-logger' version '4.0.0'
 }
 
 group = 'com.polarbookshop'
@@ -26,6 +28,8 @@ ext {
 }
 
 dependencies {
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
@@ -33,13 +37,15 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
     implementation 'org.springframework.retry:spring-retry'
 
-    runtimeOnly 'org.postgresql:postgresql'
-
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-webflux'
     testImplementation 'org.testcontainers:postgresql'
 
-    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    runtimeOnly 'org.postgresql:postgresql'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.10.1'
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
 
 dependencyManagement {
@@ -56,4 +62,14 @@ tasks.named('test') {
 
 bootRun {
     systemProperty 'polar.testdata.enabled', 'true'
+}
+
+bootBuildImage {
+    imageName = "${project.name}"
+    environment = ["BP_JVM_VERSION": "17.*"]
+}
+
+
+testlogger {
+    theme 'mocha'
 }
