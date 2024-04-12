@@ -40,6 +40,7 @@ public class BookService {
                     existingBook.id(),
                     existingBook.createdDate(),
                     existingBook.lastModifiedDate(),
+                    existingBook.publisher(),
                     existingBook.isbn(),
                     book.title(),
                     book.author(),
