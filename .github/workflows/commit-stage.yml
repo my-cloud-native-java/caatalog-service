@@ -3,7 +3,7 @@ on: push
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: my-cloud-native-java/my-java-image
+  IMAGE_NAME: my-cloud-native-java/catalog-service
   VERSION: latest
 
 jobs:
@@ -65,7 +65,7 @@ jobs:
         uses: anchore/scan-action@v3
         id: scan
         with:
-          image: ${{ env.RESISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
+          image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.VERSION }}
           fail-build: false
           severity-cutoff: high
       - name: Upload vulnerability report
