@@ -36,6 +36,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
     implementation 'org.springframework.retry:spring-retry'
+    implementation 'org.flywaydb:flyway-core'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-webflux'
@@ -61,7 +62,7 @@ tasks.named('test') {
 
 
 bootRun {
-    systemProperty 'polar.testdata.enabled', 'true'
+    systemProperty 'spring.profiles.active', 'testdata'
 }
 
 bootBuildImage {

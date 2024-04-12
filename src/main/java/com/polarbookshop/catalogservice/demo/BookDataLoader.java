@@ -7,13 +7,13 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConditionalOnProperty(name = "polar.testdata.enabled", havingValue = "true")
+@Profile("testdata")
 public class BookDataLoader {
 
     private final BookRepository bookRepository;
