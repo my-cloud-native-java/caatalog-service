@@ -1,10 +1,15 @@
 # -*- mode: Python -*-
 
 # Build
-custom_build(
-    ref = 'catalog-service',
-    command = 'eval $(minikube docker-env --profile polar); ./gradlew bootBuildImage --imageName $EXPECTED_REF',
-    deps = ['build.gradle', 'src']
+docker_build(
+  'catalog-service',
+  '.',
+  live_update = [
+    sync('./bin/main', '/workspace/bin/main'),
+    sync('./src/main', '/workspace/src/main'),
+    sync('./.gradle', '/workspace/.gradle'),
+    sync('build', '/workspace/build'),
+  ]
 )
 
 # deploy
