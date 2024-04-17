@@ -9,6 +9,7 @@ docker_build(
     sync('./src/main', '/workspace/src/main'),
     sync('./.gradle', '/workspace/.gradle'),
     sync('build', '/workspace/build'),
+    sync('.factorypath', '/workspace/.factorypath'),
   ]
 )
 
